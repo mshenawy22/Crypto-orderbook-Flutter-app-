@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
             title:'CryptoWatch OrderBook',
             theme: ThemeData(
               // Define the default brightness and colors.
+              primaryColor:BLACKB ,
               brightness: Brightness.dark,
               dividerColor: BLACKA,
               scaffoldBackgroundColor:  BLACKB,
