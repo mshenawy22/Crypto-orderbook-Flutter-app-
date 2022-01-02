@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'order_book.dart';
+import 'order_book_column.dart';
 
 
 
@@ -15,14 +16,6 @@ class MainAppScreen extends StatelessWidget {
 
     return
             OrderBook();
-
-
-
-
-
-
-
-
 
 
 

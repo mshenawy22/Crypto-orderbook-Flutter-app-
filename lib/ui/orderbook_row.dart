@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../cryptowatch_colours.dart';
+
 const colourQtyIndex = 100000;
 
 class OrderBookRow extends StatelessWidget {
@@ -13,24 +15,36 @@ class OrderBookRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children :[
-        Container (
-          width:quantity/ colourQtyIndex ,
-          color: Colors.green ,
-                    ),
-          Container (
-          color: Colors.black87 ,
+    return
+      Container (
+        height : 70,
+        padding:  EdgeInsets.symmetric(vertical: 10),
+        child :  Stack(
+            children :[
 
-             child :  Text("${this.quantity}  ${this.price} " , style: TextStyle(color: Colors.white),),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container (
+                  // width:100000*quantity/ colourQtyIndex ,
+                  width:quantity *1000 /MediaQuery.of(context).size.width  ,
+                  // width:100 ,
+                  height: 50,
+                  color: GREENB,
+                ),
+              ),
+
+              Container (
 
 
+                child :  Text("${this.quantity}  ${this.price} " , style: Theme.of(context).textTheme.bodyText2),
+              ),
 
-             )
 
-      ]
+            ]
 
-    );
+        )
+      );
+
 
 
   }
