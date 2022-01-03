@@ -16,7 +16,10 @@ class OrderBookRow extends StatelessWidget {
     return
       Container (
         height : 50,
-        child :  Stack(
+        child :
+        GestureDetector(
+      child :
+      Stack(
             children :[
 
               Align(
@@ -32,14 +35,18 @@ class OrderBookRow extends StatelessWidget {
 
 
               ListTile(
-                title:Text("${this.quantity}"),
-                // leading: Icon(FontAwesomeIcons.medal, color: RED),
-                trailing:  Text ( "${this.price}")
-                )
+                  title:Text("${this.quantity}"),
+                  // leading: Icon(FontAwesomeIcons.medal, color: RED),
+                  trailing:  Text ( "${this.price}")
+              )
 
             ]
 
+      )
+
         )
+
+
       );
 
 

@@ -10,7 +10,8 @@ class OrderBookColumn extends StatelessWidget {
   Widget build(BuildContext context) {
 
             return
-            Expanded (
+        Container(
+          child :  Expanded (
               child :   ListView.builder(
                   padding: const EdgeInsets.all(8),
                   itemCount: 10,
@@ -36,7 +37,9 @@ class OrderBookColumn extends StatelessWidget {
                     // );
                   }
               )
-            );
+          )
+        );
+
 
 
 
