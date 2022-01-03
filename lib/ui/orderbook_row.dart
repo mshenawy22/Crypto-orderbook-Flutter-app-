@@ -11,14 +11,11 @@ class OrderBookRow extends StatelessWidget {
   final int quantity ;
 
 
-
-
   @override
   Widget build(BuildContext context) {
     return
       Container (
-        height : 70,
-        padding:  EdgeInsets.symmetric(vertical: 10),
+        height : 50,
         child :  Stack(
             children :[
 
@@ -28,17 +25,17 @@ class OrderBookRow extends StatelessWidget {
                   // width:100000*quantity/ colourQtyIndex ,
                   width:quantity *1000 /MediaQuery.of(context).size.width  ,
                   // width:100 ,
-                  height: 50,
+                  height: 60,
                   color: GREENB,
                 ),
               ),
 
-              Container (
 
-
-                child :  Text("${this.quantity}  ${this.price} " , style: Theme.of(context).textTheme.bodyText2),
-              ),
-
+              ListTile(
+                title:Text("${this.quantity}"),
+                // leading: Icon(FontAwesomeIcons.medal, color: RED),
+                trailing:  Text ( "${this.price}")
+                )
 
             ]
 
