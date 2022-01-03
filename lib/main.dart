@@ -1,3 +1,4 @@
+import 'package:cryptowatch_orderbook/cubit/quantity_field_cubit/quantity_field_cubit.dart';
 import 'package:cryptowatch_orderbook/ui/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider<ProductListCubit>(
               create: (context) => ProductListCubit(),
+            ),
+
+            BlocProvider<QuantityFieldCubit>(
+              create: (context) => QuantityFieldCubit(),
             )
 
           ],
