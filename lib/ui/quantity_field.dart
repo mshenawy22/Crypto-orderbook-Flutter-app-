@@ -9,7 +9,7 @@ class inputOrderField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:const EdgeInsets.all(10) ,
+      padding:const EdgeInsets.all(15) ,
       decoration :  ShapeDecoration(
           color: Theme.of(context).canvasColor,
           shape:
@@ -25,7 +25,7 @@ class inputOrderField extends StatelessWidget {
           {
            return TextField(
              controller :TextEditingController(text:state.value.toString()),
-
+               keyboardType  : TextInputType.number,
               decoration: InputDecoration(
                 border: OutlineInputBorder(borderSide: BorderSide(color:Theme.of(context).dividerColor )),
                 labelText: 'Quantity:',

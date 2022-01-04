@@ -27,8 +27,8 @@ class OrderBook extends StatelessWidget {
              child: Row(
                children:
                [
-                 OrderBookColumn(),
-                 OrderBookColumn(),
+                 OrderBookColumn(buyTable: true),
+                 OrderBookColumn(buyTable: false),
 
                ]
 

@@ -16,3 +16,4 @@ const GREENA = Color(0xFF748e71); // green for text(buy)
 const GREENB = Color(0xFF212c28); // green for bg(buy)
 
 const REDA = Color(0xFF835060);   //red for text (sell)
+const REDB = Color(0xFF391f2a);   //red for text (sell)
