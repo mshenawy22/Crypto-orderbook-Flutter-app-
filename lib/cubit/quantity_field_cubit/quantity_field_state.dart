@@ -2,7 +2,7 @@ part of 'quantity_field_cubit.dart' ;
 
 class QuantityFieldState {
 
-   int value;
+   double value;
 
   QuantityFieldState(this.value);
 }

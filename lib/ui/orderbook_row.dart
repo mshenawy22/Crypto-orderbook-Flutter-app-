@@ -9,8 +9,8 @@ const colourQtyIndex = 100000;
 class OrderBookRow extends StatelessWidget {
   const OrderBookRow({Key? key, required this.price, required this.quantity , required this.buyRow})
       : super(key: key);
-  final int price;
-  final int quantity;
+  final double price;
+  final double quantity;
   final bool buyRow ;
 
   @override

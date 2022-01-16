@@ -10,5 +10,5 @@ class QuantityFieldCubit extends Cubit<QuantityFieldState> {
 
   void reset() => emit(QuantityFieldState(0));
 
-  void updateValue(int value) => emit(QuantityFieldState(value));
+  void updateValue(double value) => emit(QuantityFieldState(value));
 }
