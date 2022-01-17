@@ -2,7 +2,9 @@ part of 'product_list_cubit.dart' ;
 
 class ProductListState {
 
-   bool isLoaded;
 
-  ProductListState(this.isLoaded);
+   List<KrakenFutureResponse> productList ;
+
+
+  ProductListState( { required this.productList});
 }
