@@ -16,8 +16,20 @@ class KrakenFutureResponse extends Equatable {
 
   KrakenFutureResponse(this.price , this.feed  , this.product_id , this.side , this.qty , this.timestamp , this.seq);
 
+  static  Map<String, dynamic> emptyJson =
+  {
+  '   price' : 0.0,
+      'feed' : '',
+      'product_id' : '',
+      'side' : '',
+      'qty' : 0.0,
+      'timestamp' : DateTime.now().millisecondsSinceEpoch.toString() ,
+      'seq': 0,
+  } ;
 
   factory KrakenFutureResponse.fromJson(Map<String, dynamic> json) => _$KrakenFutureResponseFromJson(json);
+
+  factory KrakenFutureResponse.fromJsonEmpty() => _$KrakenFutureResponseFromJson(emptyJson);
 
   Map<String, dynamic> toJson() => _$KrakenFutureResponseToJson(this);
 
