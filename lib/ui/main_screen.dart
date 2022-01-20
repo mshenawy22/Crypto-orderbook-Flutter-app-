@@ -22,6 +22,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
   void initState() {
 
     super.initState();
+    //Initialize KrakenSocket Api class
     KrakenSocketApi(context);
   }
 

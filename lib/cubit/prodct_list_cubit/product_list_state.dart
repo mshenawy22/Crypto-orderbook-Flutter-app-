@@ -4,8 +4,8 @@ class ProductListState {
 
 
    List<KrakenFutureResponse> productListBuySide ;
-   List<KrakenFutureResponse> productListSellSide ;
 
+   List<KrakenFutureResponse> productListSellSide ;
 
   ProductListState( { required this.productListBuySide , required this.productListSellSide});
 }

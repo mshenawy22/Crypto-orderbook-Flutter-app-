@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'dart:ui';
 
 const BLACKA  =const  Color(0xFF302f41);   // for ex dividerColor
 

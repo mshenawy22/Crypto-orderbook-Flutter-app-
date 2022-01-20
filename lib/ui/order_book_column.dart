@@ -4,7 +4,6 @@ import 'package:cryptowatch_orderbook/services/kraken_api.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 import 'orderbook_row.dart';
 import 'orderbook_row_titles.dart';
@@ -20,8 +19,7 @@ class OrderBookColumn extends StatelessWidget {
        Container(
           decoration: ShapeDecoration(
               color: Theme.of(context).canvasColor,
-              // shape: Border.all(
-              //     width: 2.0, color: Theme.of(context).dividerColor)),
+
           shape: Border(
             top: BorderSide(color:Theme.of(context).dividerColor , width: 2.0 ),
             bottom: BorderSide(color:Theme.of(context).dividerColor , width: 2.0 ),
