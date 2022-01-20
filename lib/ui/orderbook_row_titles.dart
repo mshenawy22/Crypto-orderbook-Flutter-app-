@@ -24,14 +24,14 @@ class OrderBookRowTitle extends StatelessWidget {
                       children: [
                         buyTable?
                     ListTile(
-                        title: Text("TOTAL", style : TextStyle(decoration :TextDecoration.underline  , decorationStyle : TextDecorationStyle.dotted )),
+                        title: Text("TOTAL", style : Theme.of(context).primaryTextTheme.subtitle1),
                         // leading: Icon(FontAwesomeIcons.medal, color: RED),
-                        trailing: Text("PRICE" , style : TextStyle(decoration :TextDecoration.underline  , decorationStyle : TextDecorationStyle.dotted ) ))
+                        trailing: Text("PRICE" , style : Theme.of(context).primaryTextTheme.subtitle1) )
                       :
                         ListTile(
-                            title: Text("PRICE" , style : TextStyle(decoration :TextDecoration.underline  , decorationStyle : TextDecorationStyle.dotted )),
+                            title: Text("PRICE" , style : Theme.of(context).primaryTextTheme.subtitle1),
                             // leading: Icon(FontAwesomeIcons.medal, color: RED),
-                            trailing: Text("TOTAL",style : TextStyle(decoration :TextDecoration.underline  , decorationStyle : TextDecorationStyle.dotted )))
+                            trailing: Text("TOTAL",style : Theme.of(context).primaryTextTheme.subtitle1))
                   ]));
             }));
   }
