@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:bloc/bloc.dart';
 import 'package:cryptowatch_orderbook/models/api_response.dart';
 import 'package:cryptowatch_orderbook/services/kraken_api.dart';
@@ -13,7 +11,11 @@ class ProductListCubit extends Cubit<ProductListState> {
 
   ));
 
- void updateLiveQueue()
+
+
+  //To be invoked to update the order list every interval (currently 2 seconds)
+
+ void updateLiveOrderBook()
   {
 
     emit(
