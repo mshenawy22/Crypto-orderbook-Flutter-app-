@@ -1,3 +1,4 @@
+import 'package:cryptowatch_orderbook/cryptowatch_colours.dart';
 import 'package:cryptowatch_orderbook/cubit/quantity_field_cubit/quantity_field_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,8 @@ class inputOrderField extends StatelessWidget {
              controller :TextEditingController(text:state.value.toString()),
                keyboardType  : TextInputType.number,
               decoration: InputDecoration(
+                  fillColor : CWCOLORC,
+                filled: true,
                 border: OutlineInputBorder(borderSide: BorderSide(color:Theme.of(context).dividerColor )),
                 labelText: 'Quantity:',
               ),
