@@ -1,5 +1,3 @@
-import 'package:cryptowatch_orderbook/ui/quantity_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'order_book_column.dart';
@@ -26,7 +24,7 @@ class OrderBook extends StatelessWidget {
            Expanded(
              child: Row(
                children:
-               [
+               const [
                  OrderBookColumn(buyTable: true),
                  OrderBookColumn(buyTable: false),
 

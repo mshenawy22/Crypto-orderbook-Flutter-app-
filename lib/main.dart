@@ -11,6 +11,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,14 +48,12 @@ class MyApp extends StatelessWidget {
               // Define the default font family.
               fontFamily: 'Georgia',
               visualDensity: VisualDensity.adaptivePlatformDensity,
-                appBarTheme : AppBarTheme(titleTextStyle: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
-              // Define the default `TextTheme`. Use this to specify the default
-              // text styling for headlines, titles, bodies of text, and more.
+                appBarTheme :const AppBarTheme(titleTextStyle: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
 
             ),
 
             home:
-            MyHomePage(title: 'CryptoWatch OrderBook'),
+            const MyHomePage(title: 'CryptoWatch OrderBook'),
           )
       );
   }
@@ -80,9 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
       appBar: AppBar(
 
-        title: Text('CryptoWatch BTCUSD OrderBook '),
+        title: const Text('CryptoWatch BTCUSD OrderBook '),
       ),
-      body:MainAppScreen ()
+      body:const MainAppScreen ()
 
     );
   }

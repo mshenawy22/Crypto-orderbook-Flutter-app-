@@ -9,13 +9,13 @@ part of 'api_response.dart';
 KrakenFutureResponse _$KrakenFutureResponseFromJson(
         Map<String, dynamic> json) =>
     KrakenFutureResponse(
-      json['price']?? 0.0 as double,
-      json['feed'] ??'' as String,
-      json['product_id']??'' as String,
-      json['side']??'' as String,
-      json['qty'] ?? 0.0 as double,
-      json['timestamp']?? 0 as int,
-      json['seq']?? 0 as int,
+      json['price']?? 0.0 ,
+      json['feed'] ??'' ,
+      json['product_id']??'',
+      json['side']??'',
+      json['qty'] ?? 0.0 ,
+      json['timestamp']?? 0 ,
+      json['seq']?? 0 ,
     );
 
 Map<String, dynamic> _$KrakenFutureResponseToJson(
@@ -23,7 +23,7 @@ Map<String, dynamic> _$KrakenFutureResponseToJson(
     <String, dynamic>{
       'price': instance.price,
       'feed': instance.feed,
-      'product_id': instance.product_id,
+      'product_id': instance.productId,
       'qty': instance.qty,
       'side': instance.side,
       'timestamp': instance.timestamp,

@@ -1,11 +1,10 @@
 import 'package:cryptowatch_orderbook/cryptowatch_colours.dart';
 import 'package:cryptowatch_orderbook/cubit/quantity_field_cubit/quantity_field_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class inputOrderField extends StatelessWidget {
-  const inputOrderField({Key? key}) : super(key: key);
+class InputOrderField extends StatelessWidget {
+  const InputOrderField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

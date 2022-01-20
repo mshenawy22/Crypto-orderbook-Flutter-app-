@@ -1,5 +1,4 @@
 import 'package:cryptowatch_orderbook/cubit/quantity_field_cubit/quantity_field_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cryptowatch_colours.dart';
@@ -28,12 +27,12 @@ class OrderBookRow extends StatelessWidget {
               return GestureDetector(
                   child: Stack(children: [
                     Align(
-                      alignment: this.buyRow?
+                      alignment: buyRow?
                       Alignment.centerRight:
                       Alignment.centerLeft,
 
                       child:
-                      this.buyRow?
+                      buyRow?
                       Container(
                         // width:100000*quantity/ colourQtyIndex ,
                         width:
@@ -51,17 +50,17 @@ class OrderBookRow extends StatelessWidget {
                         color: REDB,
                       ),
                     ),
-                    this.buyRow?
+                    buyRow?
                     ListTile(
-                        title: Text("${this.quantity}",),
-                        trailing: Text("${formatCurrency.format(price)}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: GREENA)) ):
+                        title: Text(formatQuantity.format(quantity),),
+                        trailing: Text(formatCurrency.format(price),style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: GREENA)) ):
                     ListTile(
-                        title: Text("${formatCurrency.format(price)}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: REDA)),
-                        trailing: Text("${formatQuantity.format(quantity)}"))
+                        title: Text(formatCurrency.format(price),style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: REDA)),
+                        trailing: Text(formatQuantity.format(quantity)))
                   ]),
                   onTap: () => context
                       .read<QuantityFieldCubit>()
-                      .updateValue(this.quantity));
+                      .updateValue(quantity));
             }));
   }
 }

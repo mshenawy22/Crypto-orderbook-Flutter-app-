@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 
-const CWCOLORA  =const  Color(0xFF302f41);   // for ex dividerColor
+const CWCOLORA  = Color(0xFF302f41);   // for ex dividerColor
 
 const CWCOLORB = Color(0xFF070711); // for ex scaffoldBackgroundColor
 

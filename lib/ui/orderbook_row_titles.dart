@@ -1,8 +1,6 @@
 import 'package:cryptowatch_orderbook/cubit/quantity_field_cubit/quantity_field_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../cryptowatch_colours.dart';
 
 
 class OrderBookRowTitle extends StatelessWidget {
@@ -14,7 +12,7 @@ class OrderBookRowTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         height: 50,
         child: BlocConsumer<QuantityFieldCubit, QuantityFieldState>(
             listener: (context, state) {},
