@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:convert';
 
+import 'package:cryptowatch_orderbook/config/config.dart';
 import 'package:cryptowatch_orderbook/cubit/prodct_list_cubit/product_list_cubit.dart';
 import 'package:cryptowatch_orderbook/models/api_response.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,7 +11,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 class KrakenSocketApi {
   // initialize our websocket variable with connecting it kraken api
   static WebSocketChannel _websocket = WebSocketChannel.connect(
-    Uri.parse('wss://futures.kraken.com/ws/v1'),
+    Uri.parse(API_ENDPOINT),
   );
   // static lists to be feeded to the Product lists cubit and consumed by the UI
   static List<KrakenFutureResponse> productListtoConsumeBuySide = [];
@@ -43,7 +44,7 @@ class KrakenSocketApi {
               .add(KrakenFutureResponse.fromJson((jsonDecode(element)))),
 
           // update the live data every 2 seconds and have at least 10 entries
-          if (DateTime.now().difference(last_update) > Duration(seconds: 2) &&
+          if (DateTime.now().difference(last_update) > Duration(seconds: REFRESH_RATE_SEC) &&
               _productListCache.length > 10)
             {
               //clear the consumable product list for the buy and the sell orders
@@ -68,7 +69,7 @@ class KrakenSocketApi {
 
               //update the qubit so it refreshes the UI
               BlocProvider.of<ProductListCubit>(staticContext)
-                  .updateLiveQueue(),
+                  .updateLiveOrderBook(),
               _productListCache.clear(),
 
               last_update = DateTime.now()
@@ -77,13 +78,14 @@ class KrakenSocketApi {
   }
 
   // Restart socket
-  RestartSocket() {
+  static RestartSocket() {
     closeSocket();
     subscribeBTUSD();
   }
 
+
   //send a subscribe msg to the stream
-  subscribeBTUSD() {
+ static  subscribeBTUSD() {
     _websocket.sink
         .add('{"event":"subscribe","feed":"book","product_ids":["PI_XBTUSD"]}');
   }
@@ -94,7 +96,8 @@ class KrakenSocketApi {
         '{"event":"unsubscribe","feed":"book","product_ids":["PI_XBTUSD"]}');
   }
 
-  void closeSocket() {
+  static  closeSocket() {
     _websocket.sink.close();
   }
+
 }
