@@ -44,17 +44,11 @@ class OrderBookColumn extends StatelessWidget {
                         BlocConsumer<ProductListCubit, ProductListState>(
                         listener: (context, state) {},
                         builder: (context, state) {
-                          if (state.productList.isNotEmpty)
+                          if (state.productListBuySide.isNotEmpty && state.productListSellSide.isNotEmpty )
                           {
-//                             1642373448597
-//                   print (state.productList.first.timestamp);
-//                             DateFormat formatter = DateFormat("dd MMMM yyyy");
-//                             print (DateTime.tryParse('1642374117560'));
-//                             return formatter.format(date);
-
                             return OrderBookRow(
-                                price: state.productList.elementAt(index).price,
-                                quantity: state.productList.elementAt(index).qty,
+                                price: buyTable ? state.productListBuySide.elementAt(index).price :state.productListSellSide.elementAt(index).price,
+                                quantity: buyTable? state.productListBuySide.elementAt(index).qty :state.productListSellSide.elementAt(index).qty ,
                                 buyRow: buyTable);
                           }
                           else {
@@ -66,31 +60,9 @@ class OrderBookColumn extends StatelessWidget {
                         }
                         )
 
-                    // StreamBuilder <KrakenFutureResponse>(
-                    //     stream :  KrakenSocketApi.socketStream.asBroadcastStream() ,
-                    //     builder: (context,  snapshot)
-                    //     {
-                    //
-                    //       if (snapshot.hasData)
-                    //       {
-                    //
-                    //         return   OrderBookRow(price: snapshot.data!.price, quantity: 10.0 * index , buyRow :buyTable);
-                    //       }
-                    //       else {
-                    //         return Text('No data yet');
-                    //       }
-                    //     }
-                    //
-                    // )
                 );
 
 
-
-                //   Container(
-                //   height: 50,
-                //   color: Colors.amber[colorCodes[index]],
-                //   child: Center(child: Text('Entry ${entries[index]}')),
-                // );
               }))
     ]));
   }
