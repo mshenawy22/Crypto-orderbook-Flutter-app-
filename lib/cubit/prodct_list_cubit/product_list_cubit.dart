@@ -7,29 +7,22 @@ import 'package:cryptowatch_orderbook/services/kraken_api.dart';
 part 'product_list_state.dart';
 
 class ProductListCubit extends Cubit<ProductListState> {
-  //on initialisation , go to the loading state (loaded = false)
-  ProductListCubit() : super (ProductListState(productList:KrakenSocketApi.productListtoConsume));
+
+  ProductListCubit() : super (ProductListState(productListBuySide:KrakenSocketApi.productListtoConsumeBuySide,
+    productListSellSide: KrakenSocketApi.productListtoConsumeSellSide
+
+  ));
 
  void updateLiveQueue()
   {
-    // print (KrakenSocketApi.productListtoConsume.last.price);
+
     emit(
-        ProductListState(productList:List.from(KrakenSocketApi.productListtoConsume) )
+        ProductListState(productListBuySide:List.from(KrakenSocketApi.productListtoConsumeBuySide) ,
+        productListSellSide:  List.from (KrakenSocketApi.productListtoConsumeSellSide)
+        )
     );
 
   }
-  // void buildLiveQueue () async {
-  //
-  //   try {
-  //     print (KrakenSocketApi.productlist.length);
-  //     emit(ProductListState(productQueue:KrakenSocketApi.productQueue));
-  //
-  //   } catch (e)
-  //   {
-  //     print (e);
-  //   }
-  //
-  //
-  // }
+
 
 }

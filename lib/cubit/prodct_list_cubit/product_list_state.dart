@@ -3,8 +3,9 @@ part of 'product_list_cubit.dart' ;
 class ProductListState {
 
 
-   List<KrakenFutureResponse> productList ;
+   List<KrakenFutureResponse> productListBuySide ;
+   List<KrakenFutureResponse> productListSellSide ;
 
 
-  ProductListState( { required this.productList});
+  ProductListState( { required this.productListBuySide , required this.productListSellSide});
 }
