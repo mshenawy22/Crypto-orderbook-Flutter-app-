@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../cryptowatch_colours.dart';
+import 'package:intl/intl.dart';
 
 const colourQtyIndex = 100000;
 
@@ -15,11 +16,15 @@ class OrderBookRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var formatCurrency = NumberFormat.simpleCurrency (name : '',decimalDigits: 2);
+    var formatQuantity  = NumberFormat.simpleCurrency (name : '',decimalDigits: 0);
+
     return Container(
         height: 50,
         child: BlocConsumer<QuantityFieldCubit, QuantityFieldState>(
             listener: (context, state) {},
             builder: (context, state) {
+
               return GestureDetector(
                   child: Stack(children: [
                     Align(
@@ -49,12 +54,10 @@ class OrderBookRow extends StatelessWidget {
                     this.buyRow?
                     ListTile(
                         title: Text("${this.quantity}",),
-                        // leading: Icon(FontAwesomeIcons.medal, color: RED),
-                        trailing: Text("${this.price}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: GREENA)) ):
+                        trailing: Text("${formatCurrency.format(price)}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: GREENA)) ):
                     ListTile(
-                        title: Text("${this.price}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: REDA)),
-                        // leading: Icon(FontAwesomeIcons.medal, color: RED),
-                        trailing: Text("${this.quantity}"))
+                        title: Text("${formatCurrency.format(price)}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: REDA)),
+                        trailing: Text("${formatQuantity.format(quantity)}"))
                   ]),
                   onTap: () => context
                       .read<QuantityFieldCubit>()
