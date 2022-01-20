@@ -25,6 +25,11 @@ class _MainAppScreenState extends State<MainAppScreen> {
     //Initialize KrakenSocket Api class
     KrakenSocketApi(context);
   }
+  @override
+  void dispose() {
+    KrakenSocketApi.closeSocket();
+    super.dispose();
+  }
 
 
   @override
