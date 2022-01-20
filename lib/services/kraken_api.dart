@@ -1,111 +1,100 @@
 import 'dart:collection';
 import 'dart:convert';
 
-
 import 'package:cryptowatch_orderbook/cubit/prodct_list_cubit/product_list_cubit.dart';
 import 'package:cryptowatch_orderbook/models/api_response.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
- class KrakenSocketApi {
-  static  WebSocketChannel _websocket  =WebSocketChannel.connect(
-  Uri.parse('wss://futures.kraken.com/ws/v1'),
+class KrakenSocketApi {
+  // initialize our websocket variable with connecting it kraken api
+  static WebSocketChannel _websocket = WebSocketChannel.connect(
+    Uri.parse('wss://futures.kraken.com/ws/v1'),
   );
-
-  static List<KrakenFutureResponse> productQueue =   <KrakenFutureResponse>[];
-  static List<KrakenFutureResponse> productListtoConsume =  [];
+  // static lists to be feeded to the Product lists cubit and consumed by the UI
+  static List<KrakenFutureResponse> productListtoConsumeBuySide = [];
+  static List<KrakenFutureResponse> productListtoConsumeSellSide = [];
+  // static cache lists to be used a channel between the live stream and the cousmable lists
   static List<KrakenFutureResponse> _productListCache = [];
+  // will be used later to time the refresh of our live data
   static DateTime last_update = DateTime.now();
 
-  final  BuildContext initialcontext;
-   static late BuildContext staticContext;
+  //Buildcontext of the caller
+  final BuildContext initialcontext;
 
-  KrakenSocketApi(this.initialcontext)
-  {
+
+  static late BuildContext staticContext;
+
+  KrakenSocketApi(this.initialcontext) {
     staticContext = this.initialcontext;
+    //send the product subscription msg to the stream
     subscribeBTUSD();
+    // Main function that listens and manipulates the stream and create our order book lists lists
     StartRealtimeQeue();
-
   }
 
+  // Main function that listens and manipulates the stream and create our order book lists lists
+  StartRealtimeQeue() async {
 
-  // Stream get socketStream => _websocket.stream ;
-  // static Stream get socketStreamCore => _websocket.stream.asBroadcastStream();
+    //listen to the broadcast stream
+    _websocket.stream.asBroadcastStream().listen((element) => {
+          _productListCache
+              .add(KrakenFutureResponse.fromJson((jsonDecode(element)))),
 
+          // update the live data every 2 seconds and have at least 10 entries
+          if (DateTime.now().difference(last_update) > Duration(seconds: 2) &&
+              _productListCache.length > 10)
+            {
+              //clear the consumable product list for the buy and the sell orders
+              productListtoConsumeBuySide.clear(),
+              productListtoConsumeSellSide.clear(),
+              //map the stream list to buy list
+              productListtoConsumeBuySide = _productListCache
+                  .where((element) => element.side == 'buy')
+                  .map((v) => v)
+                  .toList(),
+              //map the stream list to sell list
+              productListtoConsumeSellSide = _productListCache
+                  .where((element) => element.side == 'sell')
+                  .map((v) => v)
+                  .toList(),
 
-  //   static Stream<KrakenFutureResponse> get socketStream =>  _websocket.stream
-  //     .map<KrakenFutureResponse>(
-  // (value) => KrakenFutureResponse.fromJson((jsonDecode(value))));
-      // .skipWhile((element) => element.productId != 'PI_XBTUSD');
+              //sort in a descending order
+              productListtoConsumeBuySide
+                  .sort((b, a) => a.qty.compareTo(b.qty)),
+              productListtoConsumeSellSide
+                  .sort((b, a) => a.qty.compareTo(b.qty)),
 
-   get productList10Items => productQueue.toList();
+              //update the qubit so it refreshes the UI
+              BlocProvider.of<ProductListCubit>(staticContext)
+                  .updateLiveQueue(),
+              _productListCache.clear(),
 
-    StartRealtimeQeue()
-       async {
-
-         // productListtoConsume.add(KrakenFutureResponse.fromJsonEmpty());
-            
-           _websocket.stream.asBroadcastStream().listen(
-                   (element) =>
-               {
-
-           _productListCache.add(  KrakenFutureResponse.fromJson((jsonDecode(element)))),
-
-
-           if (DateTime.now().difference(last_update)> Duration(seconds: 2) && _productListCache.length >10 )
-           // if (_productListCache.length >10)
-               {
-           // _productListCache.map((e) => productListtoConsume[e])
-           productListtoConsume = _productListCache.map((v) => v).toList(),
-           productListtoConsume.sort((b, a) => a.qty.compareTo(b.qty)),
-           BlocProvider.of<ProductListCubit>(staticContext).updateLiveQueue(),
-                 _productListCache.clear(),
-
-                 last_update = DateTime.now()
-
-           }
-
-
-
-
-         }
-           );
-
+              last_update = DateTime.now()
+            }
+        });
   }
 
-
-   RestartSocket()
-  {
+  // Restart socket
+  RestartSocket() {
     closeSocket();
     subscribeBTUSD();
-
   }
 
-
-
-
-
-
-    subscribeBTUSD() {
-
-    _websocket.sink.add(
-        '{"event":"subscribe","feed":"book","product_ids":["PI_XBTUSD"]}'
-    );
-
+  //send a subscribe msg to the stream
+  subscribeBTUSD() {
+    _websocket.sink
+        .add('{"event":"subscribe","feed":"book","product_ids":["PI_XBTUSD"]}');
   }
 
+  //send unsubscribe msg to the stream
   void unSubscribeBTUSD() {
-
     _websocket.sink.add(
-        '{"event":"unsubscribe","feed":"book","product_ids":["PI_XBTUSD"]}'
-    );
-
+        '{"event":"unsubscribe","feed":"book","product_ids":["PI_XBTUSD"]}');
   }
 
-   void closeSocket() {
+  void closeSocket() {
     _websocket.sink.close();
   }
-
-
 }
