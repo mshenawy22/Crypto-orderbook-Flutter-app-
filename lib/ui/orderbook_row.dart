@@ -32,7 +32,7 @@ class OrderBookRow extends StatelessWidget {
                       Container(
                         // width:100000*quantity/ colourQtyIndex ,
                         width:
-                            quantity * 1000 / MediaQuery.of(context).size.width,
+                            quantity /10 / MediaQuery.of(context).size.width,
                         // width:100 ,
                         height: 60,
                         color: GREENB,
@@ -40,7 +40,7 @@ class OrderBookRow extends StatelessWidget {
                       Container(
                         // width:100000*quantity/ colourQtyIndex ,
                         width:
-                        quantity * 1000 / MediaQuery.of(context).size.width,
+                        quantity /10 / MediaQuery.of(context).size.width,
                         // width:100 ,
                         height: 60,
                         color: REDB,
@@ -48,11 +48,11 @@ class OrderBookRow extends StatelessWidget {
                     ),
                     this.buyRow?
                     ListTile(
-                        title: Text("${this.quantity}"),
+                        title: Text("${this.quantity}",),
                         // leading: Icon(FontAwesomeIcons.medal, color: RED),
-                        trailing: Text("${this.price}")) :
+                        trailing: Text("${this.price}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: GREENA)) ):
                     ListTile(
-                        title: Text("${this.price}"),
+                        title: Text("${this.price}",style: Theme.of(context).primaryTextTheme.bodyText1?.copyWith(color: REDA)),
                         // leading: Icon(FontAwesomeIcons.medal, color: RED),
                         trailing: Text("${this.quantity}"))
                   ]),
