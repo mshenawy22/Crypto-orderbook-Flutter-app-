@@ -1,8 +1,12 @@
 part of 'quantity_field_cubit.dart' ;
 
-class QuantityFieldState {
+//ignore: must_be_immutable
+class QuantityFieldState extends Equatable {
 
-   double value;
+   final double value;
 
   QuantityFieldState(this.value);
+
+  @override
+  List<Object?> get props => [value];
 }

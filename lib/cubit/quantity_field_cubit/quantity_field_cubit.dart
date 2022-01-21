@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-
+import 'package:equatable/equatable.dart';
 part 'quantity_field_state.dart';
 
 class QuantityFieldCubit extends Cubit<QuantityFieldState> {

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cryptowatch_orderbook/models/api_response.dart';
 import 'package:cryptowatch_orderbook/services/kraken_api.dart';
-
+import 'package:equatable/equatable.dart';
 part 'product_list_state.dart';
 
 class ProductListCubit extends Cubit<ProductListState> {
