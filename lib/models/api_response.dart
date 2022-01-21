@@ -17,7 +17,7 @@ class KrakenFutureResponse extends Equatable {
       this.qty, this.timestamp, this.seq);
 
   static Map<String, dynamic> emptyJson = {
-    '   price': 0.0,
+    'price': 0.0,
     'feed': '',
     'product_id': '',
     'side': '',
