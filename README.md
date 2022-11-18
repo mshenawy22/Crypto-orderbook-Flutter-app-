@@ -2,6 +2,7 @@
 # Crpto Live Orderbook
 
 A simple crypto app that uses Kraken apis to view live BTUSD prices and calulate the latest price of an amount to buy.
+The app calls Kraken public free api. 
 
 Kindly if you found this project useful 'Star' this repo
 ![flutter_03](https://user-images.githubusercontent.com/49027183/202806429-80cb7a0e-ae0f-4c35-8775-0bdf9714c8ca.png)
